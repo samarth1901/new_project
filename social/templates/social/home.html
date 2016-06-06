@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome {{user_profile.user.first_name}} {{user_profile.user.last_name}} </title>
+</head>
+<body>
+	
+</style>
+<h2>Welcome {{user_profile.user.first_name}} {{user_profile.user.last_name}} </h2>
+{% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+{% if user_profile.dp %} 
+    <img src="/home/samarth/Desktop/im.png" alt="{{ user_profile.user.username }}" >
+{% endif %}
+
+
+{% if user_profile.profile_type == 'PL' %}
+	<p><strong>Your current teams:</strong></p>
+	{% for team in user_profile.player.team_set.all %}
+		<li>{{ team.name }}</li>
+	{% endfor %}
+	<br>
+	<h3>Update your profile</h3>
+		<li><strong>Birthday: </strong>{{ user_profile.player.birthday }}</li>
+		<li><strong>Lives In: </strong>{{ user_profile.player.place }}</li>	
+	<a href="{% url "player_profile" %}">Update Your profile</a>
+
+{% endif %}
+
+<!--{% if user_profile.profile_type == 'OW' %}
+	<p><strong>Your current grounds:</strong></p>
+	{% for ground in user_profile.owner.ground_set.all %}
+		<li>{{ ground.name }}</li>
+	{% endfor %}
+	<a href="{% url "add_ground" %}">Add New Ground</a>
+	<br>
+	<a href="{% url "owner_profile" %}">Update Your profile</a>
+
+{% endif %}-->
+
+
+<br>
+	<form action="{% url "log_out" %}" method="post">
+		{%csrf_token%}
+		<input type="submit" name="submit" value="Log Out"/>
+	</form>
+</body>
+</html>

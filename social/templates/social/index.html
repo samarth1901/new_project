@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+<body>
+				
+	{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+	{% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+	<div class="sign_up" float="left">
+		<h1>Sign up</h1>
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+		<form action="/social/key/" method="post">
+			<table>
+				{{ form1.as_table}}
+			</table>
+			{% csrf_token %}
+			<input class="btn_submit" type="submit" name="submit" value="Submit"/>
+		</form>
+	</div>
+ 
+	<div class="sign_in">
+		<h1>Sign In</h1>
+		{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
+		<form action="/social/loggedin/" method="post">
+			<table>
+				{{ form2.as_table}}
+			</table>
+			{%csrf_token%}
+			<input class="btn_submit" type="submit" name="submit" value="Log in"  />
+		</form>
+		<br>
+	</div>	
+
+	<div class="social_sign_in"> 
+		<h1>Sign In With Facebook</h1>
+
+		<a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+	</div>
+</body>
+</html>
+
+
+
+
+
+	

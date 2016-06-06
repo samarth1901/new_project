@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Key Confirmation</title>
+</head>
+<body>
+	
+</style>
+<h2>{{message}}</h2>
+	<div class="Key">
+	<h1>Please Enter Confirmation Key mailed to you </h1>
+	<form action="/social/register/" method = "post">
+	Key:<input type="text" name="confirmation_key" value="{{ confirmation_key }}" />	
+	{%csrf_token%}
+	<input type="submit" name="submit" value="Submit"/>
+	</form>
+</body>
+</html>
