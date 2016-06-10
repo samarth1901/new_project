@@ -115,3 +115,46 @@ def player_profile(request):
 		form1 = UpdatePlayer()
 		form2 = UpdateForm()
 		return render(request, 'social/playerupdate.html', {'form1':form1, 'form2':form2})
+
+def add_ground(request):
+	if request.method =='POST':
+		data = request.POST
+		form = AddGround(request.POST, request.FILES)
+		if form.is_valid():
+			user = request.user
+			user_profile = user.user_profile
+			owner = user_profile.owner
+			owner.ground_set.create(name=data['name'],dp=form.cleaned_data.get('image'), place=form.cleaned_data.get('city'), address=data['address'], game=form.cleaned_data.get('game'))
+			return render(request, 'social/home.html', {'user_profile' : user_profile, 'message':"New Ground has been added!"})
+	else:
+		form1 = AddGround()
+		return render(request, 'social/addground.html', {'form1':form1})
+
+def owner_profile(request):
+	if request.method =='POST':
+		data = request.POST
+		form = UpdateOwner(request.POST)
+		if form.is_valid():
+			user = request.user
+			user_profile = user.user_profile
+			owner = user_profile.owner
+			owner.phone_no = form.cleaned_data.get('phone_no')
+			owner.save()
+			return render(request, 'social/home.html', {'user_profile' : user_profile, 'message':"Your profile has been updated!"})
+	else:
+		form1 = UpdateOwner()
+		return render(request, 'social/ownerupdate.html', {'form1':form1})
+
+def player_game(request):
+	if request.method =='POST':
+		data = request.POST
+		form = PlayerGame(request.POST)
+		if form.is_valid():
+			user = request.user
+			user_profile = user.user_profile
+			player = user_profile.player
+			player.playergameprofile_set.create(game=form.cleaned_data.get('game'), position=data['position'], skills=data['skills'])
+			return render(request, 'social/home.html', {'user_profile' : user_profile, 'message':"A Game has been added to your profile!"})
+	else:
+		form1 = PlayerGame()
+		return render(request, 'social/playergame.html', {'form1':form1})

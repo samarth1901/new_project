@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^log_out/$',views.log_out,name="log_out"),
     #url(r'^build_team/$',views.build_team,name="build_team"),
     url(r'^player_profile/$',views.player_profile,name="player_profile"),
-    #url(r'^owner_profile/$',views.owner_profile,name="owner_profile"),
-    #url(r'^add_ground/$',views.add_ground,name="add_ground"),
+    url(r'^player_game/$',views.player_game,name="player_game"),
+    url(r'^owner_profile/$',views.owner_profile,name="owner_profile"),
+    url(r'^add_ground/$',views.add_ground,name="add_ground"),
 ]

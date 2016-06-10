@@ -39,20 +39,20 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social',
-    'social_auth',
+    #'social_auth',
 )
 
-AUTHENTICATION_BACKENDS = (
+"""AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
-)
+)"""
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-    'social_auth.context_processors.social_auth_by_type_backends',
+    #'social_auth.context_processors.social_auth_by_type_backends',
 )
 
-SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
+"""SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
 SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
 
 
@@ -61,7 +61,7 @@ FACEBOOK_API_SECRET = 'b490bd426c89ebc905f62f8f5b29e1a5'
 
 LOGIN_URL = '/social/'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_ERROR_URL = '/login-error/'
+LOGIN_ERROR_URL = '/login-error/'"""
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

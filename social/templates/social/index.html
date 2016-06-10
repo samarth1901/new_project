@@ -7,7 +7,7 @@
 				
 	{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
 	{% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
-	<div class="sign_up" float="left">
+	<div class="sign_up" float="right">
 		<h1>Sign up</h1>
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 		<form action="/social/key/" method="post">
@@ -35,7 +35,8 @@
 	<div class="social_sign_in"> 
 		<h1>Sign In With Facebook</h1>
 
-		<a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+		<!--<a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>-->
+		<li>Login with Facebook</li>
 	</div>
 </body>
 </html>

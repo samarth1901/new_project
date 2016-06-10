@@ -8,7 +8,7 @@ admin.site.register(Owner)
 admin.site.register(Ground)
 admin.site.register(Team)
 admin.site.register(Game)
-admin.site.register(PlayerGameProfile)
+admin.site.register(Playergameprofile)
 
 
 

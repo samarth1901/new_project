@@ -19,6 +19,12 @@
 		<li>{{ team.name }}</li>
 	{% endfor %}
 	<br>
+	<p><strong>Your Games:</strong></p>
+	{% for g in user_profile.player.playergameprofile_set.all %}
+		<li><strong>Game: </strong>{{ g.game.name }} <strong> Position: </strong>{{ g.position }}</li>
+	{% endfor %}
+	<a href="{% url "player_game" %}">Add Games to your profile</a>
+	<br>
 	<h3>Update your profile</h3>
 		<li><strong>Birthday: </strong>{{ user_profile.player.birthday }}</li>
 		<li><strong>Lives In: </strong>{{ user_profile.player.place }}</li>	
@@ -26,16 +32,18 @@
 
 {% endif %}
 
-<!--{% if user_profile.profile_type == 'OW' %}
+{% if user_profile.profile_type == 'OW' %}
 	<p><strong>Your current grounds:</strong></p>
 	{% for ground in user_profile.owner.ground_set.all %}
 		<li>{{ ground.name }}</li>
 	{% endfor %}
 	<a href="{% url "add_ground" %}">Add New Ground</a>
 	<br>
+	<h3>Update your profile</h3>
+		<li><strong>Phone Number: </strong>{{ user_profile.owner.phone_no }}</li>
 	<a href="{% url "owner_profile" %}">Update Your profile</a>
 
-{% endif %}-->
+{% endif %}
 
 
 <br>

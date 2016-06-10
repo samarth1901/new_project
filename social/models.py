@@ -30,7 +30,7 @@ class Player(models.Model):
 
 	user_profile = models.OneToOneField(User_profile)
 	birthday = models.DateField(null=True, blank=True)
-	place = models.CharField(max_length=2, choices=PLACE_CHOICES, default=PUNE)
+	place = models.CharField(max_length=3, choices=PLACE_CHOICES, default=PUNE)
 	def __str__(self):
 		return self.user_profile.user.username
 	def user_name(self):
@@ -39,6 +39,7 @@ class Player(models.Model):
 class Owner(models.Model):
 
 	user_profile = models.OneToOneField(User_profile)
+	phone_no = models.IntegerField(blank=True, null=True)
 	def __str__(self):
 		return self.user_profile.user.username
 	def user_name(self):
@@ -48,7 +49,9 @@ class Ground(models.Model):
 	owner = models.ForeignKey('Owner')
 	game = models.ForeignKey('Game')
 	name = models.CharField(max_length=30)
+	place = models.CharField(max_length=3, default='PUN')
 	address = models.CharField(max_length=60, null = True, blank = True)
+	dp = models.ImageField(upload_to = 'ground_pics/', null = True, blank = True)
 	def __str__(self):
 		return self.name
 
@@ -78,13 +81,13 @@ class Game(models.Model):
 	def __str__(self):
 		return self.name
 
-class PlayerGameProfile(models.Model):
+class Playergameprofile(models.Model):
 	player = models.ForeignKey('Player')
 	game = models.ForeignKey('Game')
 	position = models.CharField(max_length=10, null=True, blank=True)
 	skills = models.CharField(max_length=50, null = True, blank = True)
 	def __str__(self):
-		return self.player.user.username + "'s " + self.game.name + " profile"
+		return self.player.user_profile.user.username + "'s " + self.game.name + " profile"
 
 
 

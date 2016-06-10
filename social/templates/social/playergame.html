@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add game tp your profile!</title>
+</head>
+<body>
+<div class="update" float="left">
+		<h3>Add game to your profile!</h3>
+		<form action="{% url "player_game" %}" method="post">
+			<table>
+				{{ form1.as_table }}
+			</table>
+			{% csrf_token %}
+			<input class="btn_submit" type="submit" name="submit" value="Submit"/>
+		</form>
+</div>
+<br>
+</body>
+</html>

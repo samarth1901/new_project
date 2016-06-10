@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update your profile!</title>
+</head>
+<body>
+<div class="update" float="left">
+		<h3>Update your profile!</h3>
+		<form action="{% url "owner_profile" %}" method="post">
+			<table>
+				{{ form1.as_table }}
+			</table>
+			{% csrf_token %}
+			<input class="btn_submit" type="submit" name="submit" value="Submit"/>
+		</form>
+</div>
+<br>
+</body>
+</html>
