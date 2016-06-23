@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome {{user_profile.user.first_name}} {{user_profile.user.last_name}} </title>
+	<title>{{user_profile.user.get_full_name}}</title>
 </head>
 <body>
-	
-</style>
-<h2>Welcome {{user_profile.user.first_name}} {{user_profile.user.last_name}} </h2>
+
+<h2>{{user_profile.user.get_full_name}}</h2>
 {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
 {% if user_profile.dp %} 
     <img src="/home/samarth/Desktop/im.png" alt="{{ user_profile.user.username }}" >
@@ -14,42 +13,58 @@
 
 
 {% if user_profile.profile_type == 'PL' %}
-	<p><strong>Your current teams:</strong></p>
+	<p><strong>Teams I am part of:</strong></p>
 	{% for team in user_profile.player.team_set.all %}
-		<li>{{ team.name }}</li>
+		<li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
 	{% endfor %}
+	{% if current_user == user_profile %}
 	<br>
-	<p><strong>Your Games:</strong></p>
+	<a href="{% url "build_team" %}">Make new team!</a>
+	{% endif %}
+	<br>
+	<p><strong>My Games:</strong></p>
 	{% for g in user_profile.player.playergameprofile_set.all %}
 		<li><strong>Game: </strong>{{ g.game.name }} <strong> Position: </strong>{{ g.position }}</li>
 	{% endfor %}
-	<a href="{% url "player_game" %}">Add Games to your profile</a>
+	{% if current_user == user_profile %}
+		<a href="{% url "player_game" %}">Add Games to your profile</a>
+	{% endif %}
 	<br>
-	<h3>Update your profile</h3>
+	<p><strong>About me:</strong></p>
 		<li><strong>Birthday: </strong>{{ user_profile.player.birthday }}</li>
 		<li><strong>Lives In: </strong>{{ user_profile.player.place }}</li>	
-	<a href="{% url "player_profile" %}">Update Your profile</a>
-
+	{% if current_user == user_profile %}
+		<a href="{% url "player_profile" %}">Update Your profile</a>
+	{% endif %}
 {% endif %}
 
 {% if user_profile.profile_type == 'OW' %}
-	<p><strong>Your current grounds:</strong></p>
+	<p><strong>My grounds:</strong></p>
 	{% for ground in user_profile.owner.ground_set.all %}
-		<li>{{ ground.name }}</li>
+		<li><a href="{% url 'ground_detail' ground.id %}">{{ ground.name }}</a></li>
 	{% endfor %}
-	<a href="{% url "add_ground" %}">Add New Ground</a>
 	<br>
-	<h3>Update your profile</h3>
+	{% if current_user == user_profile %}
+		<a href="{% url "add_ground" %}">Add New Ground</a>
+	{% endif %}
+	<br>
+	<p><strong>About me:</strong></p>
 		<li><strong>Phone Number: </strong>{{ user_profile.owner.phone_no }}</li>
-	<a href="{% url "owner_profile" %}">Update Your profile</a>
-
+	{% if current_user == user_profile %}
+		<a href="{% url "owner_profile" %}">Update Your profile</a>
+	{% endif %}
 {% endif %}
 
-
+{% if current_user == user_profile %}
 <br>
 	<form action="{% url "log_out" %}" method="post">
 		{%csrf_token%}
 		<input type="submit" name="submit" value="Log Out"/>
 	</form>
+<br>
+	<form action="{% url "index" %}" method="get">
+			<input type="submit" name="submit" value="Back"/>
+	</form>
+{% endif %}
 </body>
 </html>

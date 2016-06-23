@@ -7,6 +7,8 @@
 				
 	{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
 	{% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+	{% if user_profile %}<p>Welcome <strong><a href="{% url 'home_redirect' user_profile.id %}">{{ user_profile.user.get_full_name }} </a></strong></p>{% endif %}
+	{% if form1 %}
 	<div class="sign_up" float="right">
 		<h1>Sign up</h1>
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -18,7 +20,8 @@
 			<input class="btn_submit" type="submit" name="submit" value="Submit"/>
 		</form>
 	</div>
- 
+ 	{% endif %}
+ 	{% if form2 %}
 	<div class="sign_in">
 		<h1>Sign In</h1>
 		{% if error %}<p><strong>{{ error }}</strong></p>{% endif %}
@@ -31,13 +34,27 @@
 		</form>
 		<br>
 	</div>	
-
+	{% endif %}
+	{% if form2 %}
 	<div class="social_sign_in"> 
 		<h1>Sign In With Facebook</h1>
 
 		<!--<a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>-->
 		<li>Login with Facebook</li>
+		<br>
 	</div>
+	{% endif %}
+
+	<div class="search">
+		<form action="{% url 'search_view' %}" method="get">
+			<table>
+				{{ form3.as_ul }}
+			</table>
+			<input class="btn_submit" type="submit" name="search" value="Search"  />
+		</form>
+		<br>
+	</div>
+
 </body>
 </html>
 

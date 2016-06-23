@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Results</title>
+</head>
+<body>
+	<div class="search">
+    <form action="{% url 'search_view' %}" method="get">
+      <table>
+        {{ form.as_ul }}
+      </table>
+      <input class="btn_submit" type="submit" name="search" value="Search"  />
+    </form>
+    <br>
+  </div>
+
+    {% for result in results %}
+        {% if search_for == 'G' %}
+          <li><a href="{% url 'ground_detail' result.id %}">{{result}}</a></li>
+        {% else %}
+          <li><a href="{% url 'home_redirect' result.user_profile.id %}">{{result}}</a></li>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

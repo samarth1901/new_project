@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ team.name }}</title>
+</head>
+<body>
+	<h2>{{ team.name }}</h2>
+	<br>
+	<p><strong>We Play: </strong> {{team.game}}</p>
+	{% if team.game %}<p><strong>Our Home Ground: </strong> {{team.game}}</p> {% endif %}
+	<p><strong>Don't mess with us, we are: </strong>A {{team.expertise}} Team!</p>
+	<p>
+		<strong>Team Members: </strong>
+			{% for player in team.player.all %}
+			<li><a href="{% url 'home_redirect' player.user_profile.id %}">{{ player.user_profile.user.get_full_name }}</a></li>
+			{% endfor %}
+	</p>
+
+</body>
+</html>

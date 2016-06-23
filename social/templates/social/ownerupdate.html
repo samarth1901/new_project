@@ -4,6 +4,7 @@
 	<title>Update your profile!</title>
 </head>
 <body>
+{%if message %}<p><strong>{{message}}</strong></p>{%endif%}
 <div class="update" float="left">
 		<h3>Update your profile!</h3>
 		<form action="{% url "owner_profile" %}" method="post">

@@ -4,6 +4,7 @@
 	<title>Add game tp your profile!</title>
 </head>
 <body>
+{%if message %}<p><strong>{{message}}</strong></p>{%endif%}
 <div class="update" float="left">
 		<h3>Add game to your profile!</h3>
 		<form action="{% url "player_game" %}" method="post">

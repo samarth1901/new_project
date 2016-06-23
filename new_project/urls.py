@@ -16,11 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
+'''from ajax_select import urls as ajax_select_urls'''
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.conf import settings
 
 urlpatterns = [
 	url(r'^social/', include('social.urls')),
 	url(r'', include('social_auth.urls')),
    # url(r'^social/$', RedirectView.as_view(url='/social')),
     #url(r'^private/$', 'views.private'),
+       # url(r'^ajax_select/', include(ajax_select_urls)),
     url(r'^admin/', include(admin.site.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

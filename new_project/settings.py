@@ -15,7 +15,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+SESSION_SAVE_EVERY_REQUEST = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -39,8 +39,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social',
+    #'ajax_select',
     #'social_auth',
 )
+
+'''AJAX_LOOKUP_CHANNELS = {
+     'player' : ('social.lookups', 'PlayerLookup'),
+}'''
 
 """AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
@@ -139,3 +144,6 @@ EMAIL_HOST_USER = 'persontest42@gmail.com'
 EMAIL_HOST_PASSWORD = 'testperson1'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+#AJAX_SELECT_BOOTSTRAP = True
+#AJAX_SELECT_INLINES = 'inline'
